@@ -25,7 +25,6 @@ using abcFloat4ArrayProperty = Abc::IC4fArrayProperty;
 using abcFloat4x4ArrayProperty = Abc::IM44fArrayProperty;
 
 class aiObject;
-class aiAsync;
 
 #include "aiTimeSampling.h"
 
@@ -49,7 +48,7 @@ private:
 class aiContext
 {
 public:
-    explicit aiContext(int uid=-1);
+    explicit aiContext(int uid = -1);
     ~aiContext();
 
     bool load(const char *path);
@@ -71,8 +70,7 @@ public:
     int getTimeSamplingCount();
     int getTimeSamplingIndex(Abc::TimeSamplingPtr ts);
 
-    void queueAsync(aiAsync& task);
-    void waitAsync();
+    bool getIsHDF5() const { return m_isHDF5; }
 
     template<class F>
     void eachNodes(const F &f);
@@ -90,7 +88,7 @@ private:
     int m_uid = 0;
     aiConfig m_config;
 
-    std::vector<aiAsync*> m_async_tasks;
+    bool m_isHDF5;
 };
 
 #include "aiObject.h"

@@ -33,7 +33,8 @@ public:
     template<class F>
     void eachChildRecursive(const F &f)
     {
-        for (auto& c : m_children) {
+        for (auto& c : m_children)
+        {
             f(*c);
             c->eachChildRecursive(f);
         }
@@ -57,5 +58,7 @@ protected:
     abcObject   m_abc;
     aiObject    *m_parent = nullptr;
     std::vector<ObjectPtr> m_children;
+    std::string m_name;     //
+    std::string m_fullname; // sanitized
     bool m_enabled = true;
 };

@@ -9,14 +9,12 @@ struct aiPointsSummaryInternal : public aiPointsSummary
 
 class aiPointsSample : public aiSample
 {
-using super = aiSample;
+    using super = aiSample;
 public:
     aiPointsSample(aiPoints *schema);
     ~aiPointsSample();
     void fillData(aiPointsData &dst);
     void getSummary(aiPointsSampleSummary &dst);
-
-    void waitAsync() override;
 
 public:
     Abc::P3fArraySamplePtr m_points_sp, m_points_sp2;
@@ -25,13 +23,11 @@ public:
 
     IArray<abcV3> m_points_ref;
 
-    RawVector<std::pair<float, int>> m_sort_data;
+    RawVector<std::pair<float, int> > m_sort_data;
     RawVector<abcV3> m_points, m_points2, m_points_int, m_points_prev;
     RawVector<abcV3> m_velocities;
     RawVector<uint32_t> m_ids;
     abcV3 m_bb_center, m_bb_size;
-
-    std::future<void> m_async_copy;
 };
 
 struct aiPointsTraits
@@ -42,7 +38,7 @@ struct aiPointsTraits
 
 class aiPoints : public aiTSchema<aiPointsTraits>
 {
-using super = aiTSchema<aiPointsTraits>;
+    using super = aiTSchema<aiPointsTraits>;
 public:
     aiPoints(aiObject *parent, const abcObject &abc);
     ~aiPoints();
